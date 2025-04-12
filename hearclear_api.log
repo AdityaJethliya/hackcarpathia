@@ -1,0 +1,429 @@
+2025-04-12 20:10:01,363 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 20:10:02,651 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 20:10:02,652 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 20:10:02,652 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 20:10:02,663 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 20:10:02,677 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 20:10:02,677 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 20:10:02,677 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 20:10:02,677 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 20:11:42,011 - hearclear_api - INFO - Request 4a6b8a6c-d5e0-492c-a77a-af5483c2fb84 started: GET /
+2025-04-12 20:11:42,012 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 20:11:42,012 - hearclear_api - INFO - Request 4a6b8a6c-d5e0-492c-a77a-af5483c2fb84 completed: 200 in 0.001s
+2025-04-12 20:11:45,481 - hearclear_api - INFO - Request 0c1cafe6-4771-4db9-ae5f-4f4137aa8b2e started: GET /docs
+2025-04-12 20:11:45,481 - hearclear_api - INFO - Request 0c1cafe6-4771-4db9-ae5f-4f4137aa8b2e completed: 200 in 0.000s
+2025-04-12 20:11:45,734 - hearclear_api - INFO - Request 83594a39-d249-47d0-8274-625b37357c51 started: GET /openapi.json
+2025-04-12 20:11:45,742 - hearclear_api - INFO - Request 83594a39-d249-47d0-8274-625b37357c51 completed: 200 in 0.008s
+2025-04-12 20:12:09,699 - hearclear_api - INFO - Request 825e94e9-1d67-4af7-85bd-fe78da8cf7a3 started: POST /enhance-audio/
+2025-04-12 20:12:09,702 - hearclear_api - INFO - Audio enhancement requested [file_id: 8049171d-0e1f-44f6-bd99-5f52654e7fd7] - Original filename: common_voice_en_42693885.mp3
+2025-04-12 20:12:10,422 - hearclear_api - ERROR - Error in enhance_audio_endpoint [file_id: 8049171d-0e1f-44f6-bd99-5f52654e7fd7]: module 'scipy.signal' has no attribute 'hann'
+Traceback (most recent call last):
+  File "/home/shwifty/hackcarpathia2025/HearClear/main.py", line 181, in enhance_audio_endpoint
+    original_stats = get_speech_stats(y, sr)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/audio_processing.py", line 85, in get_speech_stats
+    tempo, _ = librosa.beat.beat_track(onset_envelope=onset_env, sr=sr)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 185, in beat_track
+    beats = __beat_tracker(onset_envelope, bpm, float(sr) / hop_length, tightness, trim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 433, in __beat_tracker
+    beats = __trim_beats(localscore, beats, trim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 507, in __trim_beats
+    smooth_boe = scipy.signal.convolve(localscore[beats], scipy.signal.hann(5), "same")
+                                                          ^^^^^^^^^^^^^^^^^
+AttributeError: module 'scipy.signal' has no attribute 'hann'
+2025-04-12 20:12:10,445 - hearclear_api - INFO - Request 825e94e9-1d67-4af7-85bd-fe78da8cf7a3 completed: 500 in 0.745s
+2025-04-12 20:13:27,372 - hearclear_api - INFO - Request 02c9fcc9-179b-49c9-8690-14e47a06d944 started: POST /enhance-audio/
+2025-04-12 20:13:27,374 - hearclear_api - INFO - Audio enhancement requested [file_id: f2bf38fd-d737-486b-918c-46cbb3f7beb0] - Original filename: common_voice_en_42693885.mp3
+2025-04-12 20:13:27,402 - hearclear_api - ERROR - Error in enhance_audio_endpoint [file_id: f2bf38fd-d737-486b-918c-46cbb3f7beb0]: module 'scipy.signal' has no attribute 'hann'
+Traceback (most recent call last):
+  File "/home/shwifty/hackcarpathia2025/HearClear/main.py", line 181, in enhance_audio_endpoint
+    original_stats = get_speech_stats(y, sr)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/audio_processing.py", line 85, in get_speech_stats
+    onset_env = librosa.onset.onset_strength(y=audio_data, sr=sr)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 185, in beat_track
+    beats = __beat_tracker(onset_envelope, bpm, float(sr) / hop_length, tightness, trim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 433, in __beat_tracker
+    beats = __trim_beats(localscore, beats, trim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 507, in __trim_beats
+    smooth_boe = scipy.signal.convolve(localscore[beats], scipy.signal.hann(5), "same")
+                                                          ^^^^^^^^^^^^^^^^^
+AttributeError: module 'scipy.signal' has no attribute 'hann'
+2025-04-12 20:13:27,403 - hearclear_api - INFO - Request 02c9fcc9-179b-49c9-8690-14e47a06d944 completed: 500 in 0.031s
+2025-04-12 20:13:34,927 - hearclear_api - INFO - Request a294ed69-de1e-4e13-84aa-f77d56ca95be started: GET /docs
+2025-04-12 20:13:34,928 - hearclear_api - INFO - Request a294ed69-de1e-4e13-84aa-f77d56ca95be completed: 200 in 0.000s
+2025-04-12 20:13:35,084 - hearclear_api - INFO - Request ad586181-3367-4e38-9cd9-8f3de90c2e8b started: GET /openapi.json
+2025-04-12 20:13:35,084 - hearclear_api - INFO - Request ad586181-3367-4e38-9cd9-8f3de90c2e8b completed: 200 in 0.000s
+2025-04-12 20:13:45,473 - hearclear_api - INFO - Request 637f5270-0010-429b-9c02-8a8e376933a3 started: POST /enhance-audio/
+2025-04-12 20:13:45,475 - hearclear_api - INFO - Audio enhancement requested [file_id: 54e214f7-51df-43ab-b386-096be8b9937d] - Original filename: common_voice_en_42693885.mp3
+2025-04-12 20:13:45,512 - hearclear_api - ERROR - Error in enhance_audio_endpoint [file_id: 54e214f7-51df-43ab-b386-096be8b9937d]: module 'scipy.signal' has no attribute 'hann'
+Traceback (most recent call last):
+  File "/home/shwifty/hackcarpathia2025/HearClear/main.py", line 181, in enhance_audio_endpoint
+    original_stats = get_speech_stats(y, sr)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/audio_processing.py", line 85, in get_speech_stats
+    onset_env = librosa.onset.onset_strength(y=audio_data, sr=sr)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 185, in beat_track
+    beats = __beat_tracker(onset_envelope, bpm, float(sr) / hop_length, tightness, trim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 433, in __beat_tracker
+    beats = __trim_beats(localscore, beats, trim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shwifty/hackcarpathia2025/HearClear/hc/lib/python3.11/site-packages/librosa/beat.py", line 507, in __trim_beats
+    smooth_boe = scipy.signal.convolve(localscore[beats], scipy.signal.hann(5), "same")
+                                                          ^^^^^^^^^^^^^^^^^
+AttributeError: module 'scipy.signal' has no attribute 'hann'
+2025-04-12 20:13:45,518 - hearclear_api - INFO - Request 637f5270-0010-429b-9c02-8a8e376933a3 completed: 500 in 0.045s
+2025-04-12 20:13:54,751 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 20:13:59,275 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 20:14:00,477 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 20:14:00,477 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 20:14:00,477 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 20:14:00,487 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 20:14:00,503 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 20:14:00,503 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 20:14:00,503 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 20:14:00,503 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 20:14:17,425 - hearclear_api - INFO - Request 81175829-033b-45ef-8862-4105672a45b6 started: GET /
+2025-04-12 20:14:17,426 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 20:14:17,426 - hearclear_api - INFO - Request 81175829-033b-45ef-8862-4105672a45b6 completed: 200 in 0.001s
+2025-04-12 20:14:23,350 - hearclear_api - INFO - Request 1f648bb5-e7b9-459a-8bba-dae0338ae3e4 started: GET /docs
+2025-04-12 20:14:23,351 - hearclear_api - INFO - Request 1f648bb5-e7b9-459a-8bba-dae0338ae3e4 completed: 200 in 0.000s
+2025-04-12 20:14:23,492 - hearclear_api - INFO - Request 9ad9dcc6-0de3-401f-9474-195e1938e1f6 started: GET /openapi.json
+2025-04-12 20:14:23,500 - hearclear_api - INFO - Request 9ad9dcc6-0de3-401f-9474-195e1938e1f6 completed: 200 in 0.007s
+2025-04-12 20:14:33,186 - hearclear_api - INFO - Request e0401222-cf4c-4ba8-a037-7f69062b06bc started: POST /enhance-audio/
+2025-04-12 20:14:33,187 - hearclear_api - INFO - Audio enhancement requested [file_id: ad34df1a-dc30-402c-9e06-f4873e999be9] - Original filename: common_voice_en_42693885.mp3
+2025-04-12 20:14:33,895 - hearclear_api - INFO - Applying audio enhancements [file_id: ad34df1a-dc30-402c-9e06-f4873e999be9]
+2025-04-12 20:14:34,166 - hearclear_api - INFO - Audio enhancement completed [file_id: ad34df1a-dc30-402c-9e06-f4873e999be9] - Output: common_voice_en_42693885_enhanced_ad34df1a-dc30-402c-9e06-f4873e999be9.wav
+2025-04-12 20:14:34,166 - hearclear_api - INFO - Request e0401222-cf4c-4ba8-a037-7f69062b06bc completed: 200 in 0.980s
+2025-04-12 20:15:51,183 - hearclear_api - INFO - Request 70f6c0f4-2720-401b-b70b-c196e81595f9 started: GET /download-enhanced/ad34df1a-dc30-402c-9e06-f4873e999be9
+2025-04-12 20:15:51,184 - hearclear_api - INFO - Download requested for file_id: ad34df1a-dc30-402c-9e06-f4873e999be9
+2025-04-12 20:15:51,184 - hearclear_api - INFO - File found: common_voice_en_42693885_enhanced_ad34df1a-dc30-402c-9e06-f4873e999be9.wav - Serving for download
+2025-04-12 20:15:51,185 - hearclear_api - INFO - Request 70f6c0f4-2720-401b-b70b-c196e81595f9 completed: 200 in 0.001s
+2025-04-12 20:16:07,745 - hearclear_api - INFO - Request 0b43de40-4375-4f5b-8b2a-2af5e6d5c3fd started: POST /transcribe/ad34df1a-dc30-402c-9e06-f4873e999be9
+2025-04-12 20:16:07,745 - hearclear_api - INFO - Transcription requested for file_id: ad34df1a-dc30-402c-9e06-f4873e999be9, language: auto
+2025-04-12 20:16:07,745 - hearclear_api - INFO - Starting transcription with Whisper [file_id: ad34df1a-dc30-402c-9e06-f4873e999be9]
+2025-04-12 20:16:09,387 - hearclear_api - INFO - Transcription completed for file_id: ad34df1a-dc30-402c-9e06-f4873e999be9
+2025-04-12 20:16:09,388 - hearclear_api - INFO - Request 0b43de40-4375-4f5b-8b2a-2af5e6d5c3fd completed: 200 in 1.643s
+2025-04-12 20:18:14,109 - hearclear_api - INFO - Request 8f199057-a6f8-40aa-9947-e154e06d936b started: POST /enhance-audio/
+2025-04-12 20:18:14,110 - hearclear_api - INFO - Audio enhancement requested [file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74] - Original filename: common_voice_en_42693885.mp3
+2025-04-12 20:18:14,151 - hearclear_api - INFO - Applying audio enhancements [file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74]
+2025-04-12 20:18:14,311 - hearclear_api - INFO - Audio enhancement completed [file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74] - Output: common_voice_en_42693885_enhanced_29c815c5-ece8-4180-8b91-a50265e5ae74.wav
+2025-04-12 20:18:14,312 - hearclear_api - INFO - Request 8f199057-a6f8-40aa-9947-e154e06d936b completed: 200 in 0.203s
+2025-04-12 20:18:40,481 - hearclear_api - INFO - Request 1e829c1c-7a7e-4324-8044-3f10c396aaf8 started: GET /download-enhanced/29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:18:40,482 - hearclear_api - INFO - Download requested for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:18:40,482 - hearclear_api - INFO - File found: common_voice_en_42693885_enhanced_29c815c5-ece8-4180-8b91-a50265e5ae74.wav - Serving for download
+2025-04-12 20:18:40,482 - hearclear_api - INFO - Request 1e829c1c-7a7e-4324-8044-3f10c396aaf8 completed: 200 in 0.001s
+2025-04-12 20:19:29,340 - hearclear_api - INFO - Request 9e549149-53ec-41d8-aa06-91a45dda257c started: POST /transcribe/29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:19:29,340 - hearclear_api - INFO - Transcription requested for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74, language: pl
+2025-04-12 20:19:29,341 - hearclear_api - INFO - Starting transcription with Whisper [file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74]
+2025-04-12 20:19:33,842 - hearclear_api - INFO - Transcription completed for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:19:33,842 - hearclear_api - INFO - Request 9e549149-53ec-41d8-aa06-91a45dda257c completed: 200 in 4.502s
+2025-04-12 20:20:30,858 - hearclear_api - INFO - Request 6bcdbdf0-5453-4894-b6d6-5f5b3563953d started: POST /transcribe/29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:20:30,858 - hearclear_api - INFO - Transcription requested for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74, language: auto
+2025-04-12 20:20:30,858 - hearclear_api - INFO - Starting transcription with Whisper [file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74]
+2025-04-12 20:20:32,218 - hearclear_api - INFO - Transcription completed for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:20:32,218 - hearclear_api - INFO - Request 6bcdbdf0-5453-4894-b6d6-5f5b3563953d completed: 200 in 1.361s
+2025-04-12 20:37:44,257 - hearclear_api - INFO - Request 415c77ca-87b9-40b9-ac5b-283349bc85b5 started: POST /transcribe/29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:37:44,258 - hearclear_api - INFO - Transcription requested for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74, language: auto
+2025-04-12 20:37:44,258 - hearclear_api - INFO - Starting transcription with Whisper [file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74]
+2025-04-12 20:37:45,662 - hearclear_api - INFO - Transcription completed for file_id: 29c815c5-ece8-4180-8b91-a50265e5ae74
+2025-04-12 20:37:45,662 - hearclear_api - INFO - Request 415c77ca-87b9-40b9-ac5b-283349bc85b5 completed: 200 in 1.405s
+2025-04-12 20:37:48,067 - hearclear_api - INFO - Request d652fc8e-8ebf-411c-9f56-896819b5b004 started: GET /docs
+2025-04-12 20:37:48,067 - hearclear_api - INFO - Request d652fc8e-8ebf-411c-9f56-896819b5b004 completed: 200 in 0.000s
+2025-04-12 20:37:48,318 - hearclear_api - INFO - Request fae04a42-9639-4eca-bdfa-649c2eb52bcd started: GET /openapi.json
+2025-04-12 20:37:48,319 - hearclear_api - INFO - Request fae04a42-9639-4eca-bdfa-649c2eb52bcd completed: 200 in 0.001s
+2025-04-12 20:38:46,372 - hearclear_api - INFO - Request a9e50de7-ea09-4ade-9530-e076de7bc5a6 started: POST /transcribe/ad34df1a-dc30-402c-9e06-f4873e999be9
+2025-04-12 20:38:46,373 - hearclear_api - INFO - Transcription requested for file_id: ad34df1a-dc30-402c-9e06-f4873e999be9, language: auto
+2025-04-12 20:38:46,373 - hearclear_api - INFO - Starting transcription with Whisper [file_id: ad34df1a-dc30-402c-9e06-f4873e999be9]
+2025-04-12 20:38:47,702 - hearclear_api - INFO - Transcription completed for file_id: ad34df1a-dc30-402c-9e06-f4873e999be9
+2025-04-12 20:38:47,702 - hearclear_api - INFO - Request a9e50de7-ea09-4ade-9530-e076de7bc5a6 completed: 200 in 1.330s
+2025-04-12 20:48:19,198 - hearclear_api - INFO - Request 73d9639e-7f6b-433f-8a56-f14931ca021a started: POST /enhance-audio/
+2025-04-12 20:48:19,199 - hearclear_api - INFO - Audio enhancement requested [file_id: 61cb0425-c2d8-46c2-9595-8634537635b9] - Original filename: common_voice_en_42693884.mp3
+2025-04-12 20:48:19,289 - hearclear_api - INFO - Applying audio enhancements [file_id: 61cb0425-c2d8-46c2-9595-8634537635b9]
+2025-04-12 20:48:19,828 - hearclear_api - INFO - Audio enhancement completed [file_id: 61cb0425-c2d8-46c2-9595-8634537635b9] - Output: common_voice_en_42693884_enhanced_61cb0425-c2d8-46c2-9595-8634537635b9.wav
+2025-04-12 20:48:19,828 - hearclear_api - INFO - Request 73d9639e-7f6b-433f-8a56-f14931ca021a completed: 200 in 0.630s
+2025-04-12 22:13:45,193 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:13:46,443 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:13:46,443 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:13:46,444 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:13:46,457 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:13:46,475 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:13:46,475 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:13:46,476 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:13:46,476 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:13:46,476 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:14:10,979 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:14:12,151 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:14:12,152 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:14:12,152 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:14:12,166 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:14:12,183 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:14:12,183 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:14:12,183 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:14:12,183 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:14:12,183 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:14:20,832 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:14:27,421 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:14:28,591 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:14:28,592 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:14:28,592 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:14:28,605 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:14:28,619 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:14:28,619 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:14:28,619 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:14:28,620 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:14:34,825 - hearclear_api - INFO - Request edb43a47-7b2f-48c9-aaa2-b7e813f27d7a started: GET /
+2025-04-12 22:14:34,826 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 22:14:34,826 - hearclear_api - INFO - Request edb43a47-7b2f-48c9-aaa2-b7e813f27d7a completed: 200 in 0.001s
+2025-04-12 22:14:39,964 - hearclear_api - INFO - Request 5c262914-9a77-4727-898c-a43cbd679518 started: GET /docs
+2025-04-12 22:14:39,964 - hearclear_api - INFO - Request 5c262914-9a77-4727-898c-a43cbd679518 completed: 200 in 0.000s
+2025-04-12 22:14:40,114 - hearclear_api - INFO - Request dc407da0-f769-4eed-9a31-1e3ad91dda00 started: GET /openapi.json
+2025-04-12 22:14:40,125 - hearclear_api - INFO - Request dc407da0-f769-4eed-9a31-1e3ad91dda00 completed: 200 in 0.011s
+2025-04-12 22:22:41,879 - hearclear_api - INFO - Request 627f5b58-cc13-484d-920e-9e1df1e17136 started: GET /docs
+2025-04-12 22:22:41,880 - hearclear_api - INFO - Request 627f5b58-cc13-484d-920e-9e1df1e17136 completed: 200 in 0.000s
+2025-04-12 22:22:42,064 - hearclear_api - INFO - Request 20d33715-95d3-48d8-af2e-36a0c616dce0 started: GET /openapi.json
+2025-04-12 22:22:42,065 - hearclear_api - INFO - Request 20d33715-95d3-48d8-af2e-36a0c616dce0 completed: 200 in 0.001s
+2025-04-12 22:22:59,986 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:23:03,762 - hearclear_api - INFO - Initialized OllamaClient with model: deepseek-llm
+2025-04-12 22:23:03,766 - hearclear_api - WARNING - Model 'deepseek-llm' not found in available models: ['deepseek-llm:latest', 'deepseek-coder:latest', 'deepseek-coder:1.3b']
+2025-04-12 22:23:03,766 - hearclear_api - INFO - Successfully initialized Ollama client for DeepSeek-LLM
+2025-04-12 22:23:05,379 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:23:06,573 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:23:06,573 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:23:06,573 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:23:06,589 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:23:06,603 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:23:06,603 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:23:06,603 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:23:06,603 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:23:06,603 - hearclear_api - INFO - Ollama (DeepSeek-LLM) available: True
+2025-04-12 22:23:41,144 - hearclear_api - INFO - Request 392f07a9-4837-4c4e-98c6-8cfb252cea0e started: GET /
+2025-04-12 22:23:41,145 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 22:23:41,145 - hearclear_api - INFO - Request 392f07a9-4837-4c4e-98c6-8cfb252cea0e completed: 200 in 0.001s
+2025-04-12 22:23:45,795 - hearclear_api - INFO - Request cbb916ab-b74f-4dbe-8a3a-917cb10a57b2 started: GET /docs
+2025-04-12 22:23:45,795 - hearclear_api - INFO - Request cbb916ab-b74f-4dbe-8a3a-917cb10a57b2 completed: 200 in 0.000s
+2025-04-12 22:23:45,943 - hearclear_api - INFO - Request 9b5f17a2-31e1-49e5-abb3-d718319bf720 started: GET /openapi.json
+2025-04-12 22:23:45,955 - hearclear_api - INFO - Request 9b5f17a2-31e1-49e5-abb3-d718319bf720 completed: 200 in 0.012s
+2025-04-12 22:24:30,484 - hearclear_api - INFO - Request 85884c01-9418-4bd8-97cd-269c7e5d221c started: POST /enhance-audio/
+2025-04-12 22:24:30,486 - hearclear_api - INFO - Audio enhancement requested [file_id: c4fe4a59-db50-41e2-a2d1-6ca5342846e6] - Original filename: common_voice_en_42693841.mp3
+2025-04-12 22:24:31,292 - hearclear_api - INFO - Applying audio enhancements [file_id: c4fe4a59-db50-41e2-a2d1-6ca5342846e6]
+2025-04-12 22:24:31,773 - hearclear_api - INFO - Audio enhancement completed [file_id: c4fe4a59-db50-41e2-a2d1-6ca5342846e6] - Output: common_voice_en_42693841_enhanced_c4fe4a59-db50-41e2-a2d1-6ca5342846e6.wav
+2025-04-12 22:24:31,774 - hearclear_api - INFO - Request 85884c01-9418-4bd8-97cd-269c7e5d221c completed: 200 in 1.290s
+2025-04-12 22:24:51,559 - hearclear_api - INFO - Request db69038c-0083-4211-b63e-fe284220d085 started: GET /download-enhanced/c4fe4a59-db50-41e2-a2d1-6ca5342846e6
+2025-04-12 22:24:51,560 - hearclear_api - INFO - Download requested for file_id: c4fe4a59-db50-41e2-a2d1-6ca5342846e6
+2025-04-12 22:24:51,560 - hearclear_api - INFO - File found: common_voice_en_42693841_enhanced_c4fe4a59-db50-41e2-a2d1-6ca5342846e6.wav - Serving for download
+2025-04-12 22:24:51,561 - hearclear_api - INFO - Request db69038c-0083-4211-b63e-fe284220d085 completed: 200 in 0.001s
+2025-04-12 22:26:39,551 - hearclear_api - INFO - Request 8e921383-9062-42d2-81b7-44fa49f8ef1a started: POST /enhance-audio/
+2025-04-12 22:26:39,553 - hearclear_api - INFO - Audio enhancement requested [file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db] - Original filename: common_voice_en_42693841.mp3
+2025-04-12 22:26:39,629 - hearclear_api - INFO - Applying audio enhancements [file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db]
+2025-04-12 22:26:39,809 - hearclear_api - INFO - Audio enhancement completed [file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db] - Output: common_voice_en_42693841_enhanced_05078da4-2fe4-4a2b-b74d-08c5c96ec5db.wav
+2025-04-12 22:26:39,810 - hearclear_api - INFO - Request 8e921383-9062-42d2-81b7-44fa49f8ef1a completed: 200 in 0.258s
+2025-04-12 22:26:48,987 - hearclear_api - INFO - Request b026d049-752d-417d-9b58-94119a442dfb started: GET /download-enhanced/05078da4-2fe4-4a2b-b74d-08c5c96ec5db
+2025-04-12 22:26:48,987 - hearclear_api - INFO - Download requested for file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db
+2025-04-12 22:26:48,988 - hearclear_api - INFO - File found: common_voice_en_42693841_enhanced_05078da4-2fe4-4a2b-b74d-08c5c96ec5db.wav - Serving for download
+2025-04-12 22:26:48,988 - hearclear_api - INFO - Request b026d049-752d-417d-9b58-94119a442dfb completed: 200 in 0.001s
+2025-04-12 22:28:31,295 - hearclear_api - INFO - Request 3fcd3fbc-6ef1-49bf-a256-591f5e9b96ef started: POST /query-transcript-audio/05078da4-2fe4-4a2b-b74d-08c5c96ec5db
+2025-04-12 22:28:31,298 - hearclear_api - INFO - Audio question received for file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db, language: auto
+2025-04-12 22:28:31,298 - hearclear_api - WARNING - Transcript not found for file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db
+2025-04-12 22:28:31,298 - hearclear_api - ERROR - Error in query_transcript_audio for file_id 05078da4-2fe4-4a2b-b74d-08c5c96ec5db: 
+Traceback (most recent call last):
+  File "/home/shwifty/hackcarpathia2025/HearClear/main.py", line 455, in query_transcript_audio
+    raise HTTPException(status_code=404, detail="Transcript not found")
+fastapi.exceptions.HTTPException
+2025-04-12 22:28:31,299 - hearclear_api - INFO - Request 3fcd3fbc-6ef1-49bf-a256-591f5e9b96ef completed: 500 in 0.003s
+2025-04-12 22:29:05,536 - hearclear_api - INFO - Request 42d1cc85-5406-4151-ac1b-2b041a40b57f started: POST /query-transcript-audio/05078da4-2fe4-4a2b-b74d-08c5c96ec5db
+2025-04-12 22:29:05,538 - hearclear_api - INFO - Audio question received for file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db, language: auto
+2025-04-12 22:29:05,538 - hearclear_api - WARNING - Transcript not found for file_id: 05078da4-2fe4-4a2b-b74d-08c5c96ec5db
+2025-04-12 22:29:05,538 - hearclear_api - ERROR - Error in query_transcript_audio for file_id 05078da4-2fe4-4a2b-b74d-08c5c96ec5db: 
+Traceback (most recent call last):
+  File "/home/shwifty/hackcarpathia2025/HearClear/main.py", line 455, in query_transcript_audio
+    raise HTTPException(status_code=404, detail="Transcript not found")
+fastapi.exceptions.HTTPException
+2025-04-12 22:29:05,539 - hearclear_api - INFO - Request 42d1cc85-5406-4151-ac1b-2b041a40b57f completed: 500 in 0.002s
+2025-04-12 22:38:47,210 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:38:49,397 - hearclear_api - INFO - Initialized OllamaClient with model: deepseek-llm
+2025-04-12 22:38:49,400 - hearclear_api - WARNING - Model 'deepseek-llm' not found in available models: ['deepseek-llm:latest', 'deepseek-coder:latest', 'deepseek-coder:1.3b']
+2025-04-12 22:38:49,401 - hearclear_api - INFO - Successfully initialized Ollama client for DeepSeek-LLM
+2025-04-12 22:38:51,102 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:38:52,297 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:38:52,297 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:38:52,298 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:38:52,314 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:38:52,328 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:38:52,328 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:38:52,328 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:38:52,328 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:38:52,328 - hearclear_api - INFO - Ollama (DeepSeek-LLM) available: True
+2025-04-12 22:39:01,423 - hearclear_api - INFO - Request bd30df12-4fef-4e48-a2cd-62acb477d39b started: GET /
+2025-04-12 22:39:01,424 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 22:39:01,424 - hearclear_api - INFO - Request bd30df12-4fef-4e48-a2cd-62acb477d39b completed: 200 in 0.001s
+2025-04-12 22:39:07,368 - hearclear_api - INFO - Request 90a963b9-3fb8-422d-8d75-415a7be4c8a0 started: GET /docs
+2025-04-12 22:39:07,368 - hearclear_api - INFO - Request 90a963b9-3fb8-422d-8d75-415a7be4c8a0 completed: 200 in 0.000s
+2025-04-12 22:39:07,573 - hearclear_api - INFO - Request 0f37b9b9-3c72-49c0-88ef-16f0c3b65e1f started: GET /openapi.json
+2025-04-12 22:39:07,589 - hearclear_api - INFO - Request 0f37b9b9-3c72-49c0-88ef-16f0c3b65e1f completed: 200 in 0.016s
+2025-04-12 22:40:06,235 - hearclear_api - INFO - Request 3e5976f0-ebde-4b3d-99f3-c0e4c94e75b7 started: GET /docs
+2025-04-12 22:40:06,235 - hearclear_api - INFO - Request 3e5976f0-ebde-4b3d-99f3-c0e4c94e75b7 completed: 200 in 0.000s
+2025-04-12 22:40:06,419 - hearclear_api - INFO - Request b508884c-cd9a-4124-af2b-0d361b1285a7 started: GET /openapi.json
+2025-04-12 22:40:06,420 - hearclear_api - INFO - Request b508884c-cd9a-4124-af2b-0d361b1285a7 completed: 200 in 0.001s
+2025-04-12 22:40:10,010 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:40:12,971 - hearclear_api - INFO - Initialized OllamaClient with model: deepseek-llm
+2025-04-12 22:40:12,976 - hearclear_api - WARNING - Model 'deepseek-llm' not found in available models: ['deepseek-llm:latest', 'deepseek-coder:latest', 'deepseek-coder:1.3b']
+2025-04-12 22:40:12,976 - hearclear_api - INFO - Successfully initialized Ollama client for DeepSeek-LLM
+2025-04-12 22:40:14,607 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:40:15,836 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:40:15,837 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:40:15,838 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:40:15,868 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:40:15,894 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:40:15,894 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:40:15,894 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:40:15,894 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:40:15,895 - hearclear_api - INFO - Ollama (DeepSeek-LLM) available: True
+2025-04-12 22:40:19,606 - hearclear_api - INFO - Request e15a4206-1ab7-495d-9f30-dd7f9451cee1 started: GET /docs
+2025-04-12 22:40:19,607 - hearclear_api - INFO - Request e15a4206-1ab7-495d-9f30-dd7f9451cee1 completed: 200 in 0.001s
+2025-04-12 22:40:19,775 - hearclear_api - INFO - Request f6783137-2894-4fc4-8501-864029da59be started: GET /openapi.json
+2025-04-12 22:40:19,784 - hearclear_api - INFO - Request f6783137-2894-4fc4-8501-864029da59be completed: 200 in 0.009s
+2025-04-12 22:41:23,634 - hearclear_api - INFO - Request fb64de38-fbb0-4f4e-b64d-88d77c4a3536 started: POST /enhance-audio/
+2025-04-12 22:41:23,636 - hearclear_api - INFO - Audio enhancement requested [file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076] - Original filename: common_voice_en_42693865.mp3
+2025-04-12 22:41:24,416 - hearclear_api - INFO - Applying audio enhancements [file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076]
+2025-04-12 22:41:24,817 - hearclear_api - INFO - Audio enhancement completed [file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076] - Output: common_voice_en_42693865_enhanced_4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076.wav
+2025-04-12 22:41:24,819 - hearclear_api - INFO - Request fb64de38-fbb0-4f4e-b64d-88d77c4a3536 completed: 200 in 1.184s
+2025-04-12 22:41:49,492 - hearclear_api - INFO - Request af2e9267-bc4f-4848-be0f-c2eec6ca4e0c started: POST /transcribe/4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076
+2025-04-12 22:41:49,493 - hearclear_api - INFO - Transcription requested for file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076, language: auto
+2025-04-12 22:41:49,493 - hearclear_api - INFO - Starting transcription with Whisper [file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076]
+2025-04-12 22:41:51,237 - hearclear_api - INFO - Transcription completed for file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076
+2025-04-12 22:41:51,237 - hearclear_api - INFO - Request af2e9267-bc4f-4848-be0f-c2eec6ca4e0c completed: 200 in 1.745s
+2025-04-12 22:42:32,478 - hearclear_api - INFO - Request ed495a8b-4b24-44af-aeb9-cb8dbb01ba3e started: POST /query-transcript/4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076
+2025-04-12 22:42:32,479 - hearclear_api - INFO - Transcript query requested for file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076, question: 'what is the person talking about'
+2025-04-12 22:42:32,479 - hearclear_api - INFO - Using DeepSeek-LLM to find answer to question: 'what is the person talking about'
+2025-04-12 22:43:19,438 - hearclear_api - INFO - Answer found in segment at 0:00:00 - 0:00:09 (confidence: 0.80)
+2025-04-12 22:43:19,439 - hearclear_api - INFO - Request ed495a8b-4b24-44af-aeb9-cb8dbb01ba3e completed: 200 in 46.960s
+2025-04-12 22:45:39,328 - hearclear_api - INFO - Request a263458c-7323-4166-94c0-0d832a165143 started: POST /query-transcript-audio/4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076
+2025-04-12 22:45:39,330 - hearclear_api - INFO - Audio question received for file_id: 4b0f34bb-c8fb-4e2f-91de-5e7eab3a5076, language: auto
+2025-04-12 22:45:39,331 - hearclear_api - INFO - Transcribing question audio with Whisper
+2025-04-12 22:45:40,768 - hearclear_api - INFO - Question transcribed: ' What is the person talking about?'
+2025-04-12 22:45:40,769 - hearclear_api - INFO - Using DeepSeek-LLM to find answer to question: ' What is the person talking about?'
+2025-04-12 22:46:14,063 - hearclear_api - INFO - Answer found in segment at 0:00:00 - 0:00:09 (confidence: 0.95)
+2025-04-12 22:46:14,064 - hearclear_api - INFO - Request a263458c-7323-4166-94c0-0d832a165143 completed: 200 in 34.736s
+2025-04-12 22:56:21,183 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 22:56:23,564 - hearclear_api - INFO - Initialized OllamaClient with model: deepseek-llm
+2025-04-12 22:56:23,567 - hearclear_api - WARNING - Model 'deepseek-llm' not found in available models: ['deepseek-llm:latest', 'deepseek-coder:latest', 'deepseek-coder:1.3b']
+2025-04-12 22:56:23,568 - hearclear_api - INFO - Successfully initialized Ollama client for DeepSeek-LLM
+2025-04-12 22:56:25,211 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 22:56:26,438 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 22:56:26,439 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:56:26,439 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:56:26,450 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 22:56:26,466 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 22:56:26,466 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 22:56:26,466 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 22:56:26,466 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 22:56:26,466 - hearclear_api - INFO - Ollama (DeepSeek-LLM) available: True
+2025-04-12 22:56:37,649 - hearclear_api - INFO - Request cfc69f4e-2814-4539-aa72-f9a7fb854237 started: GET /docs
+2025-04-12 22:56:37,649 - hearclear_api - INFO - Request cfc69f4e-2814-4539-aa72-f9a7fb854237 completed: 200 in 0.001s
+2025-04-12 22:56:37,935 - hearclear_api - INFO - Request 9c34c4c6-dd0a-4a75-844f-eeea89299a7b started: GET /openapi.json
+2025-04-12 22:56:37,946 - hearclear_api - INFO - Request 9c34c4c6-dd0a-4a75-844f-eeea89299a7b completed: 200 in 0.011s
+2025-04-12 22:59:30,950 - hearclear_api - INFO - Request 95e3253d-c7e7-4ed5-b8d9-30ec8067c523 started: POST /enhance-audio/
+2025-04-12 22:59:31,020 - hearclear_api - INFO - Audio enhancement requested [file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856] - Original filename: David goggins Mindset is Unreal Bro.mp3
+2025-04-12 22:59:34,864 - hearclear_api - INFO - Applying audio enhancements [file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856]
+2025-04-12 22:59:44,233 - hearclear_api - INFO - Audio enhancement completed [file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856] - Output: David goggins Mindset is Unreal Bro_enhanced_34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856.wav
+2025-04-12 22:59:44,234 - hearclear_api - INFO - Request 95e3253d-c7e7-4ed5-b8d9-30ec8067c523 completed: 200 in 13.285s
+2025-04-12 23:00:55,441 - hearclear_api - INFO - Request c639b956-14b4-4ce6-b46b-2c87f0b4e3ec started: GET /stream-answer-audio/34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856
+2025-04-12 23:00:55,442 - hearclear_api - INFO - Streaming answer audio for file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856, question: 'What does he say about you against you?'
+2025-04-12 23:00:55,442 - hearclear_api - WARNING - Transcript not found for file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856
+2025-04-12 23:00:55,443 - hearclear_api - INFO - Request c639b956-14b4-4ce6-b46b-2c87f0b4e3ec completed: 404 in 0.001s
+2025-04-12 23:01:21,975 - hearclear_api - INFO - Request eac98e45-5cec-44e5-a2ae-e912ad797633 started: GET /stream-answer-audio/34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856
+2025-04-12 23:01:21,976 - hearclear_api - INFO - Streaming answer audio for file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856, question: 'What does he say about you against you?'
+2025-04-12 23:01:21,976 - hearclear_api - WARNING - Transcript not found for file_id: 34bbcfa3-bc93-4e94-9d15-bd8f8c0ca856
+2025-04-12 23:01:21,977 - hearclear_api - INFO - Request eac98e45-5cec-44e5-a2ae-e912ad797633 completed: 404 in 0.001s
+2025-04-12 23:07:52,889 - hearclear_api - INFO - ========== HearClear API Shutting Down ==========
+2025-04-12 23:07:55,569 - hearclear_api - INFO - Initialized OllamaClient with model: deepseek-llm
+2025-04-12 23:07:55,572 - hearclear_api - WARNING - Model 'deepseek-llm' not found in available models: ['deepseek-llm:latest', 'deepseek-coder:latest', 'deepseek-coder:1.3b']
+2025-04-12 23:07:55,572 - hearclear_api - INFO - Successfully initialized Ollama client for DeepSeek-LLM
+2025-04-12 23:07:57,243 - hearclear_api - INFO - Successfully imported audio_processing module
+2025-04-12 23:07:58,505 - hearclear_api - INFO - Successfully imported WhisperTranscriber module
+2025-04-12 23:07:58,506 - hearclear_api - INFO - Uploads directory created at: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 23:07:58,506 - hearclear_api - INFO - Transcripts directory created at: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 23:07:58,527 - hearclear_api - INFO - Starting uvicorn server
+2025-04-12 23:07:58,540 - hearclear_api - INFO - ========== HearClear API Starting Up ==========
+2025-04-12 23:07:58,540 - hearclear_api - INFO - Uploads directory: /home/shwifty/hackcarpathia2025/HearClear/uploads
+2025-04-12 23:07:58,540 - hearclear_api - INFO - Transcripts directory: /home/shwifty/hackcarpathia2025/HearClear/transcripts
+2025-04-12 23:07:58,540 - hearclear_api - INFO - Whisper transcription available: True
+2025-04-12 23:07:58,540 - hearclear_api - INFO - Ollama (DeepSeek-LLM) available: True
+2025-04-12 23:08:02,787 - hearclear_api - INFO - Request 8fcfa2ee-c314-443b-9a5c-25a26163cf04 started: GET /
+2025-04-12 23:08:02,787 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 23:08:02,788 - hearclear_api - INFO - Request 8fcfa2ee-c314-443b-9a5c-25a26163cf04 completed: 200 in 0.001s
+2025-04-12 23:08:04,363 - hearclear_api - INFO - Request c49f43e0-515d-46e2-acdb-9dadb2854d0f started: GET /
+2025-04-12 23:08:04,363 - hearclear_api - INFO - Root endpoint accessed
+2025-04-12 23:08:04,364 - hearclear_api - INFO - Request c49f43e0-515d-46e2-acdb-9dadb2854d0f completed: 200 in 0.001s
+2025-04-12 23:08:09,310 - hearclear_api - INFO - Request 90bd48c8-6449-45c0-94c3-d40cce64f881 started: GET /docs
+2025-04-12 23:08:09,311 - hearclear_api - INFO - Request 90bd48c8-6449-45c0-94c3-d40cce64f881 completed: 200 in 0.000s
+2025-04-12 23:08:09,462 - hearclear_api - INFO - Request fc2757ee-3bb9-45a1-b085-96d72e742d3a started: GET /openapi.json
+2025-04-12 23:08:09,477 - hearclear_api - INFO - Request fc2757ee-3bb9-45a1-b085-96d72e742d3a completed: 200 in 0.015s
+2025-04-12 23:08:39,778 - hearclear_api - INFO - Request 62d62ae4-a1e5-4104-9bc3-2d213a310762 started: POST /enhance-audio/
+2025-04-12 23:08:39,835 - hearclear_api - INFO - Audio enhancement requested [file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28] - Original filename: David goggins Mindset is Unreal Bro.mp3
+2025-04-12 23:08:43,550 - hearclear_api - INFO - Applying audio enhancements [file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28]
+2025-04-12 23:08:52,669 - hearclear_api - INFO - Audio enhancement completed [file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28] - Output: David goggins Mindset is Unreal Bro_enhanced_e0729d33-2f3e-47c2-849f-77fa298a7d28.wav
+2025-04-12 23:08:52,671 - hearclear_api - INFO - Request 62d62ae4-a1e5-4104-9bc3-2d213a310762 completed: 200 in 12.892s
+2025-04-12 23:09:06,478 - hearclear_api - INFO - Request 2a04ae44-d967-4d76-8431-77739ba4efdd started: POST /transcribe/e0729d33-2f3e-47c2-849f-77fa298a7d28
+2025-04-12 23:09:06,479 - hearclear_api - INFO - Transcription requested for file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28, language: auto
+2025-04-12 23:09:06,479 - hearclear_api - INFO - Starting transcription with Whisper [file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28]
+2025-04-12 23:09:34,851 - hearclear_api - INFO - Transcription completed for file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28
+2025-04-12 23:09:34,852 - hearclear_api - INFO - Request 2a04ae44-d967-4d76-8431-77739ba4efdd completed: 200 in 28.374s
+2025-04-12 23:13:25,480 - hearclear_api - INFO - Request 4222e96d-d566-446e-b6b9-a8721b9adc8f started: POST /audio-answers/e0729d33-2f3e-47c2-849f-77fa298a7d28
+2025-04-12 23:13:25,482 - hearclear_api - INFO - Audio answer requested for file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28, language: auto
+2025-04-12 23:13:25,483 - hearclear_api - INFO - Transcribing question audio with Whisper
+2025-04-12 23:13:26,850 - hearclear_api - INFO - Question transcribed: ' When does the long clock go off?'
+2025-04-12 23:13:26,851 - hearclear_api - INFO - Finding answer and extracting audio segment
+2025-04-12 23:21:24,916 - hearclear_api - INFO - Extracting audio segment from 250.0s to 252.0s
+2025-04-12 23:21:24,957 - hearclear_api - INFO - Successfully extracted audio segment (264644 bytes)
+2025-04-12 23:21:24,960 - hearclear_api - INFO - Found answer with audio segment
+2025-04-12 23:21:24,964 - hearclear_api - INFO - Request 4222e96d-d566-446e-b6b9-a8721b9adc8f completed: 200 in 479.484s
+2025-04-12 23:26:03,157 - hearclear_api - INFO - Request 747d8f12-5761-4674-bfa6-33230c32542f started: POST /enhance-audio/
+2025-04-12 23:26:03,159 - hearclear_api - INFO - Audio enhancement requested [file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5] - Original filename: common_voice_en_42693685.mp3
+2025-04-12 23:26:03,276 - hearclear_api - INFO - Applying audio enhancements [file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5]
+2025-04-12 23:26:03,590 - hearclear_api - INFO - Audio enhancement completed [file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5] - Output: common_voice_en_42693685_enhanced_c1210746-4fd0-4bcc-b021-8713e9e400a5.wav
+2025-04-12 23:26:03,591 - hearclear_api - INFO - Request 747d8f12-5761-4674-bfa6-33230c32542f completed: 200 in 0.434s
+2025-04-12 23:26:21,816 - hearclear_api - INFO - Request 45cee89e-49f0-4728-8645-9678ddd9a0c3 started: POST /transcribe/c1210746-4fd0-4bcc-b021-8713e9e400a5
+2025-04-12 23:26:21,817 - hearclear_api - INFO - Transcription requested for file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5, language: auto
+2025-04-12 23:26:21,817 - hearclear_api - INFO - Starting transcription with Whisper [file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5]
+2025-04-12 23:26:23,519 - hearclear_api - INFO - Transcription completed for file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5
+2025-04-12 23:26:23,520 - hearclear_api - INFO - Request 45cee89e-49f0-4728-8645-9678ddd9a0c3 completed: 200 in 1.704s
+2025-04-12 23:26:56,745 - hearclear_api - INFO - Request 03b8089b-8a12-4f9a-b30d-381971dd2f4d started: POST /query-transcript/c1210746-4fd0-4bcc-b021-8713e9e400a5
+2025-04-12 23:26:56,746 - hearclear_api - INFO - Transcript query requested for file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5, question: 'what's his last name?'
+2025-04-12 23:26:56,746 - hearclear_api - INFO - Using DeepSeek-LLM to find answer to question: 'what's his last name?'
+2025-04-12 23:27:45,686 - hearclear_api - INFO - Answer found in segment at 0:00:00 - 0:00:11 (confidence: 0.98)
+2025-04-12 23:27:45,687 - hearclear_api - INFO - Request 03b8089b-8a12-4f9a-b30d-381971dd2f4d completed: 200 in 48.942s
+2025-04-12 23:29:04,369 - hearclear_api - INFO - Request b2fadb25-5675-42c2-9d34-ad9d15f54974 started: POST /query-transcript-audio/c1210746-4fd0-4bcc-b021-8713e9e400a5
+2025-04-12 23:29:04,371 - hearclear_api - INFO - Audio question received for file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5, language: auto
+2025-04-12 23:29:04,371 - hearclear_api - INFO - Transcribing question audio with Whisper
+2025-04-12 23:29:05,777 - hearclear_api - INFO - Question transcribed: ' What's the guys last name?'
+2025-04-12 23:29:05,778 - hearclear_api - INFO - Using DeepSeek-LLM to find answer to question: ' What's the guys last name?'
+2025-04-12 23:29:42,659 - hearclear_api - INFO - Answer found in segment at 0:00:00 - 0:00:11 (confidence: 0.80)
+2025-04-12 23:29:42,659 - hearclear_api - INFO - Request b2fadb25-5675-42c2-9d34-ad9d15f54974 completed: 200 in 38.290s
+2025-04-12 23:30:50,325 - hearclear_api - INFO - Request 64dea595-ec56-4212-88de-91f8d50125f2 started: POST /audio-answers/e0729d33-2f3e-47c2-849f-77fa298a7d28
+2025-04-12 23:30:50,326 - hearclear_api - INFO - Audio answer requested for file_id: e0729d33-2f3e-47c2-849f-77fa298a7d28, language: auto
+2025-04-12 23:30:50,327 - hearclear_api - INFO - Transcribing question audio with Whisper
+2025-04-12 23:30:51,625 - hearclear_api - INFO - Question transcribed: ' What's the guys last name?'
+2025-04-12 23:30:51,625 - hearclear_api - INFO - Finding answer and extracting audio segment
+2025-04-12 23:38:49,354 - hearclear_api - INFO - Extracting audio segment from 164.6s to 170.6s
+2025-04-12 23:38:49,388 - hearclear_api - INFO - Successfully extracted audio segment (617444 bytes)
+2025-04-12 23:38:49,392 - hearclear_api - INFO - Found answer with audio segment
+2025-04-12 23:38:49,402 - hearclear_api - INFO - Request 64dea595-ec56-4212-88de-91f8d50125f2 completed: 200 in 479.077s
+2025-04-12 23:38:49,403 - hearclear_api - INFO - Request bffb3d64-3abd-41e3-9047-29e65a5b8832 started: POST /audio-answers/c1210746-4fd0-4bcc-b021-8713e9e400a5
+2025-04-12 23:38:49,405 - hearclear_api - INFO - Audio answer requested for file_id: c1210746-4fd0-4bcc-b021-8713e9e400a5, language: auto
+2025-04-12 23:38:49,406 - hearclear_api - INFO - Transcribing question audio with Whisper
+2025-04-12 23:38:50,724 - hearclear_api - INFO - Question transcribed: ' What's the guys last name?'
+2025-04-12 23:38:50,724 - hearclear_api - INFO - Finding answer and extracting audio segment
+2025-04-12 23:39:31,256 - hearclear_api - INFO - Extracting audio segment from 0.0s to 11.0s
+2025-04-12 23:39:31,256 - hearclear_api - INFO - Successfully extracted audio segment (736044 bytes)
+2025-04-12 23:39:31,257 - hearclear_api - INFO - Found answer with audio segment
+2025-04-12 23:39:31,269 - hearclear_api - INFO - Request bffb3d64-3abd-41e3-9047-29e65a5b8832 completed: 200 in 41.866s
